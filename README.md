@@ -29,13 +29,9 @@ The app I'm building is meant to help with the first part of the process i.e. tr
 
 <img src="images/The-Last-Supper-grid.png" />
 
-<br/>
-
 <div>
 <h5>2. Drawing a grid on the canvas:</h5>
 <p>The painter will draw a grid on the canvas based on the grid that was calculated by the app. </p>
-
-<br/>
 
 <h5>3. Finding important coordinates and sketching:</h5>
 <p>Having sketched the grid, the user will be able to easily find important coordinates on the image simply by clicking on the point of the image he whishes to draw. On click, the app will indicate to the user how to pin point the important coordinate with a relative coordinate based on a sub-grid formed by edges of the grid-square in which the point is contained. An example with an image helps us understand better:</p>
@@ -51,7 +47,8 @@ With an absolute path, we would get a coordinate based on a grid which has as or
 With a relative path, we would get a coordinate based on a grid which has as origin the bottom left corner of the containing square. This facilitates the job for the user to find the point using a normal ruler.
 </p>
 
-  
- 
-
 </div>
+
+<br/>
+
+<h3>How to use:</h3>
