@@ -17,7 +17,7 @@ My sister and I enjoy painting. Through years of practice, we got pretty good at
 <img src="images/The-Last-Supper.jpg" />
 
 <p>
-Working on this big of a scale obligates us to work smarter, since we are talking about a lot of materials that could be wasted, but also our time too. Thus, we decided to draw with pencil the image first, using rulers, compasses and whatnot to achieve a drawing that would be as true to the original. Then, we would go over with the oil paint to complete our masterpiece. 
+Working on this big of a scale forces us to work smarter, since we are talking about a lot of materials that could be wasted, but also our time too. Thus, we decided to draw with pencil the image first, using rulers, compasses and whatnot to achieve a drawing that would be as true to the original. Then, we would go over with the oil paint to complete our masterpiece. 
 </p>
 
 <p>
