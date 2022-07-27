@@ -8,9 +8,9 @@ spring:
     multipart:
       max-file-size: 50MB
   datasource:
-    password:
+    password: Banane206!
     url: jdbc:postgresql://localhost:5432/registration
-    username:
+    username: postgres
   jpa:
     hibernate:
       ddl-auto: create-drop
