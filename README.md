@@ -21,7 +21,7 @@ Working on this big of a scale forces us to work smarter, since we are talking a
 </p>
 
 <p>
-The app I'm building is meant to help with the first part of the process i.e. tracing the image with pencil. Let me show you the process so it becomes more clear how a computer could help:
+The app I'm building is meant to help with the first part of the process i.e. tracing the image with pencil. Let me show you the process so it becomes clearer how a computer could help:
 </p>
 
 <h5>1. Creating a grid over the image:</h5>
