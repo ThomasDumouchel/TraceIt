@@ -35,6 +35,8 @@ public class AppUserService implements UserDetailsService {
                 .isPresent();
 
         if (userExists){
+            // TODO: if user signs up again (so userExists already)
+            // then send another confirmation e-mail
             throw new IllegalStateException("email already taken");
         }
 
@@ -57,5 +59,9 @@ public class AppUserService implements UserDetailsService {
         // TODO: SEND EMAIL
 
         return token;
+    }
+
+    public int enableAppUser(String email) {
+        return appUserRepository.enableAppUser(email);
     }
 }
