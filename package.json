@@ -1,0 +1,28 @@
+{
+  "name": "traceit",
+  "version": "1.0.0",
+  "description": "<h1>TraceIt (currently in development)</h1> <h3>A web application to help painter's trace an image of their choice on canvas</h3>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasDumouchel/TraceIt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomasDumouchel/TraceIt/issues"
+  },
+  "homepage": "https://github.com/ThomasDumouchel/TraceIt#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "engines": {
+    "node": "16.16.0"
+  }
+  
+}
