@@ -1,11 +1,15 @@
 // client/src/App.js
-
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+
+import { useState } from 'react';
+
+
+
+// Component imports
+import TraceItNav from "./components/TraceItNav";
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = useState(null);
 
   React.useEffect(() => {
     fetch("/api")
@@ -14,11 +18,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+    <div >
+      <TraceItNav />
+      {/* <ProjectsDashboard /> */}
     </div>
   );
 }
