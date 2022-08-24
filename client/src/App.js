@@ -1,12 +1,12 @@
 // client/src/App.js
 import React from "react";
-
 import { useState } from 'react';
-
-
+import { Outlet } from "react-router-dom";
 
 // Component imports
 import TraceItNav from "./components/TraceItNav";
+
+
 
 function App() {
   const [data, setData] = useState(null);
@@ -20,7 +20,7 @@ function App() {
   return (
     <div >
       <TraceItNav />
-      {/* <ProjectsDashboard /> */}
+      <Outlet />
     </div>
   );
 }

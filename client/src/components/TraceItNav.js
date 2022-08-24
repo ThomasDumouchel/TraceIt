@@ -6,33 +6,56 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import SettingsIcon from '@mui/icons-material/Settings';
 
+import { useNavigate } from 'react-router-dom';
+
+
 const TraceItNav = () => {
-    const goHome = () => {
+    let navigate = useNavigate();
+
+    const toHome = () => {
         console.log('Logo clicked')
     }
 
+    const toMyProjects = () => {
+        navigate('/myProjects');
+    }
+    const toAbout = () => {
+        navigate('/about');
+    }
+    const toSettings = () => {
+        navigate('/settings');
+    }
+
+
     return (
     <div>
-        <AppBar position='static'>
+        <AppBar sx={{ backgroundColor:'green' }} position='static'>
             <Toolbar>
                 <Typography variant="h6" 
                     component="div" 
                     sx={{ flexGrow: 1, cursor: 'pointer' }}
-                    onClick={goHome}
+                    onClick={toHome}
                 >
                     TraceIt
                 </Typography>
-
-                <Button color="inherit">My Projects</Button>
-                <Button color="inherit">About</Button>
+                <Button color="inherit"
+                    onClick={toMyProjects}
+                >
+                    My Projects
+                </Button>
+                <Button color="inherit"
+                    onClick={toAbout}
+                >
+                    About
+                </Button>
                 <IconButton color="inherit"
                     edge='start'
                     area-label='settings'
                     sx={{ borderRadius: 0, marginLeft: 0}}
+                    onClick={toSettings}
                 >
                     <SettingsIcon />
                 </IconButton>
-
             </Toolbar>
         </AppBar>
     </div>
