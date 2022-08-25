@@ -8,8 +8,13 @@ import TableBody from '@mui/material/TableBody';
 import TableCell, {tableCellClasses} from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
+import TableFooter from '@mui/material/TableFooter';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+
+import CreateProjectDialog from './CreateProjectDialog';
+import axios from 'axios';
 
 const userProjects = [
     {
@@ -50,14 +55,37 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
   
 const ProjectsTable = () => {
+    const [openCreateProject, setOpenCreateProject] = React.useState(false);
+
     let navigate = useNavigate();
     const toProject = (projectId) => {
         navigate(`${projectId}`);
     }
 
     const confirmDeleteProject = () => {
-        console.log('confirm delete modal/dialog')
+        console.log('confirm delete modal/dialog');
     }
+
+    const openCreateProjectDialog = () => {
+        setOpenCreateProject(true);
+    }
+
+    const cancelCreateProject = () => {
+        setOpenCreateProject(false);
+    }
+    
+    const createProject = ({ project_name, img_link, canvas_width, canvas_height, unit }) => {
+        const postBody = { project_name, img_link, canvas_width, canvas_height, unit };
+        axios.post('/api/addProject', postBody)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
+        setOpenCreateProject(false);
+    };
 
     return (
     <div>
@@ -89,8 +117,17 @@ const ProjectsTable = () => {
                         </StyledTableRow>
                     ))}
                 </TableBody>
+                <TableFooter>
+                        <TableRow>
+                            <TableCell>
+                                <Button variant="outlined" onClick={openCreateProjectDialog}>New Project</Button>
+                            </TableCell>
+                        </TableRow>
+                </TableFooter>
             </Table>
         </TableContainer>
+
+        <CreateProjectDialog open={openCreateProject} handleCancel={cancelCreateProject} handleCreate={createProject} />
     </div>
     );
 }
