@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { styled } from '@mui/material/styles';
 
@@ -16,23 +16,6 @@ import Button from '@mui/material/Button';
 import CreateProjectDialog from './CreateProjectDialog';
 import axios from 'axios';
 
-const userProjects = [
-    {
-        id: 1,
-        name: 'Picasso on 30x90',
-        lastWorkedOn: 'september 9th 2022'
-    },
-    {
-        id: 2,
-        name: 'DaVinci on 30x60',
-        lastWorkedOn: 'october 21st 2019'
-    },
-    {
-        id: 3,
-        name: 'Dali on 30x30',
-        lastWorkedOn: 'december 25th 2020'
-    },
-];
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -56,14 +39,33 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
 const ProjectsTable = () => {
     const [openCreateProject, setOpenCreateProject] = React.useState(false);
+    const [userProjects, setUserProjects] = React.useState([])
+
+    React.useEffect(() => {
+        axios.post('/api/getProject', { projectId: "63080183d3d55386efacc73e" })
+            .then((res) => {
+                console.log(res);
+                let project = res.data
+                setUserProjects(arr => [...arr, project]);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, []);
 
     let navigate = useNavigate();
     const toProject = (projectId) => {
         navigate(`${projectId}`);
     }
 
-    const confirmDeleteProject = () => {
-        console.log('confirm delete modal/dialog');
+    const confirmDeleteProject = (projectId) => {
+        axios.post('/api/deleteProject', { projectId })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     const openCreateProjectDialog = () => {
@@ -77,12 +79,12 @@ const ProjectsTable = () => {
     const createProject = ({ project_name, img_link, canvas_width, canvas_height, unit }) => {
         const postBody = { project_name, img_link, canvas_width, canvas_height, unit };
         axios.post('/api/addProject', postBody)
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
 
         setOpenCreateProject(false);
     };
@@ -104,15 +106,15 @@ const ProjectsTable = () => {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <StyledTableCell component="th" scope="row">
-                                {project.name}
+                                {project.project_name}
                             </StyledTableCell>
                             <StyledTableCell align='right'>
                                 {project.lastWorkedOn}
                             </StyledTableCell>
                             <StyledTableCell align="right">
-                                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => toProject(project.id)}>Continue</span>
+                                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => toProject(project._id)}>Continue</span>
                                 <span style={{ margin: '0 0.5em' }}>|</span>
-                                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={confirmDeleteProject}>Delete</span>
+                                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={() => confirmDeleteProject(project._id)}>Delete</span>
                             </StyledTableCell>
                         </StyledTableRow>
                     ))}

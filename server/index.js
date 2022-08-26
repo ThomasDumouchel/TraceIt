@@ -3,8 +3,8 @@ const path = require('path');
 const express = require("express");
 const bodyParser = require('body-parser');
 
-// Services
-const projectsService = require('./services/projectsService')
+// Managers
+const ProjectsManager = require('./managers/ProjectsManager');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,8 +16,21 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 
 app.post("/api/addProject", (req, res) => {
-    projectsService.addProject({ ...req });
+    let project = req.body;
+    ProjectsManager.addProject({ ...project });
     res.json({ message: "projectAdded" });
+})
+
+app.post("/api/getProject", async (req, res) => {
+    let projectId = req.body.projectId;
+    const result = await ProjectsManager.getProjectById(projectId);
+    res.json({ ...result });
+})
+
+app.post("/api/deleteProject", (req, res) => {
+    let projectId = req.body.projectId;
+    ProjectsManager.deleteProjectById(projectId);
+    res.json({ message: "project deleted"});
 })
 
 app.get("/api", (req, res) => {
